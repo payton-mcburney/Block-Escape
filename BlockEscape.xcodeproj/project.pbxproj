@@ -12,12 +12,15 @@
 		564932BF237471F600D7609B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 564932BE237471F600D7609B /* Actions.sks */; };
 		564932C1237471F600D7609B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932C0237471F600D7609B /* GameScene.swift */; };
 		564932C3237471F600D7609B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932C2237471F600D7609B /* GameViewController.swift */; };
-		564932C6237471F600D7609B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 564932C4237471F600D7609B /* Main.storyboard */; };
 		564932C8237471F700D7609B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 564932C7237471F700D7609B /* Assets.xcassets */; };
 		564932CB237471F700D7609B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 564932C9237471F700D7609B /* LaunchScreen.storyboard */; };
 		564932D6237471F700D7609B /* BlockEscapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932D5237471F700D7609B /* BlockEscapeTests.swift */; };
 		564932E1237471F700D7609B /* BlockEscapeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932E0237471F700D7609B /* BlockEscapeUITests.swift */; };
 		9F4584A72379C3A7007CE379 /* BlockEscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A62379C3A7007CE379 /* BlockEscapeViewController.swift */; };
+		9F4584A92379D806007CE379 /* BlockEscapeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A82379D806007CE379 /* BlockEscapeScene.swift */; };
+		9F4584AB2379DA82007CE379 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 9F4584AA2379DA82007CE379 /* Images */; };
+		9F4584AF2379ED03007CE379 /* BlockEscapeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F4584AE2379ED03007CE379 /* BlockEscapeScene.sks */; };
+		9F701F59237A224600BF547B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F701F57237A224600BF547B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +47,6 @@
 		564932BE237471F600D7609B /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		564932C0237471F600D7609B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		564932C2237471F600D7609B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		564932C5237471F600D7609B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		564932C7237471F700D7609B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		564932CA237471F700D7609B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		564932CC237471F700D7609B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +57,10 @@
 		564932E0237471F700D7609B /* BlockEscapeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeUITests.swift; sourceTree = "<group>"; };
 		564932E2237471F700D7609B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F4584A62379C3A7007CE379 /* BlockEscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeViewController.swift; sourceTree = "<group>"; };
+		9F4584A82379D806007CE379 /* BlockEscapeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeScene.swift; sourceTree = "<group>"; };
+		9F4584AA2379DA82007CE379 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		9F4584AE2379ED03007CE379 /* BlockEscapeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockEscapeScene.sks; sourceTree = "<group>"; };
+		9F701F58237A224600BF547B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		564932AE237471F600D7609B = {
 			isa = PBXGroup;
 			children = (
+				9F4584AA2379DA82007CE379 /* Images */,
 				564932B9237471F600D7609B /* BlockEscape */,
 				564932D4237471F700D7609B /* BlockEscapeTests */,
 				564932DF237471F700D7609B /* BlockEscapeUITests */,
@@ -107,10 +114,12 @@
 			children = (
 				564932BA237471F600D7609B /* AppDelegate.swift */,
 				564932BC237471F600D7609B /* GameScene.sks */,
+				9F4584AE2379ED03007CE379 /* BlockEscapeScene.sks */,
+				9F701F57237A224600BF547B /* Main.storyboard */,
 				564932BE237471F600D7609B /* Actions.sks */,
 				564932C0237471F600D7609B /* GameScene.swift */,
+				9F4584A82379D806007CE379 /* BlockEscapeScene.swift */,
 				564932C2237471F600D7609B /* GameViewController.swift */,
-				564932C4237471F600D7609B /* Main.storyboard */,
 				9F4584A62379C3A7007CE379 /* BlockEscapeViewController.swift */,
 				564932C7237471F700D7609B /* Assets.xcassets */,
 				564932C9237471F700D7609B /* LaunchScreen.storyboard */,
@@ -241,11 +250,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				564932C6237471F600D7609B /* Main.storyboard in Resources */,
+				9F701F59237A224600BF547B /* Main.storyboard in Resources */,
 				564932BD237471F600D7609B /* GameScene.sks in Resources */,
+				9F4584AB2379DA82007CE379 /* Images in Resources */,
 				564932C8237471F700D7609B /* Assets.xcassets in Resources */,
 				564932CB237471F700D7609B /* LaunchScreen.storyboard in Resources */,
 				564932BF237471F600D7609B /* Actions.sks in Resources */,
+				9F4584AF2379ED03007CE379 /* BlockEscapeScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				564932C1237471F600D7609B /* GameScene.swift in Sources */,
+				9F4584A92379D806007CE379 /* BlockEscapeScene.swift in Sources */,
 				9F4584A72379C3A7007CE379 /* BlockEscapeViewController.swift in Sources */,
 				564932C3237471F600D7609B /* GameViewController.swift in Sources */,
 				564932BB237471F600D7609B /* AppDelegate.swift in Sources */,
@@ -309,20 +321,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		564932C4237471F600D7609B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				564932C5237471F600D7609B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		564932C9237471F700D7609B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				564932CA237471F700D7609B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9F701F57237A224600BF547B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F701F58237A224600BF547B /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
