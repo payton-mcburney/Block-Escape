@@ -18,16 +18,14 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private var playerCanJump: Bool!
     
     override func didMove(to view: SKView) {
-        // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners
+        // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
         
-        // Testing for future collision development
-        print("scene started")
-        
-        
-        //Gameplay background
+        // Gameplay background
         backgroundColor = SKColor.white
         
+        
         // Initialize floor
+        // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
         guard let floor = childNode(withName: "floor") as? SKSpriteNode else {
             fatalError("floor node not loaded")
         }
@@ -49,8 +47,6 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         // Player jumps if the user taps the screen under the floor
         if (playerCanJump && pos.y < floor.position.y) {
             print("Jump!")
-//            let moveUp = SKAction.moveBy(x: 0, y: 500, duration: 1.0)
-//            player.run(moveUp)
             player.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 250.0))
             playerCanJump = false
         }
