@@ -9,18 +9,27 @@
 import SpriteKit
 import GameplayKit
 
-class BlockEscapeScene: SKScene {
+class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    let player = SKSpriteNode(imageNamed: "Images/player")
+    
+    var player: SKSpriteNode!
     
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners
         
+        // Testing for future collision development
+        print("scene started")
+        
         //Gameplay background
         backgroundColor = SKColor.white
         
+        // Initialize player
+        guard let player = childNode(withName: "player_name") as? SKSpriteNode else {
+            fatalError("player node not loaded")
+        }
+        self.player = player
         
 //        player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
 //        player.size = CGSize(width: player.size.width * 0.1, height: player.size.height * 0.1)
@@ -29,39 +38,28 @@ class BlockEscapeScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+        let moveUp = SKAction.moveBy(x: 0, y: 250, duration: 1.5)
+        player.run(moveUp)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+        
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        for touch in touches
+        {
+            let touchLocation = touch.location(in: self)
+            player.position.x = touchLocation.x
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,6 +70,9 @@ class BlockEscapeScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
+    func collisionBetween(object1: SKNode, object2: SKNode) {
+        print("collision detected")
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
