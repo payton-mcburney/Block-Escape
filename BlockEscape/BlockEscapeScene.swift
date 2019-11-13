@@ -13,8 +13,9 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    
     var player: SKSpriteNode!
+    var floor: SKSpriteNode!
+    private var playerCanJump: Bool!
     
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners
@@ -22,24 +23,37 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         // Testing for future collision development
         print("scene started")
         
+        
         //Gameplay background
         backgroundColor = SKColor.white
         
+        // Initialize floor
+        guard let floor = childNode(withName: "floor") as? SKSpriteNode else {
+            fatalError("floor node not loaded")
+        }
+        self.floor = floor
+        
         // Initialize player
-        guard let player = childNode(withName: "player_name") as? SKSpriteNode else {
+        guard let player = childNode(withName: "player") as? SKSpriteNode else {
             fatalError("player node not loaded")
         }
         self.player = player
+        physicsWorld.contactDelegate = self
+        player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
+        playerCanJump = false
         
-//        player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
-//        player.size = CGSize(width: player.size.width * 0.1, height: player.size.height * 0.1)
-//        addChild(player)
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-        let moveUp = SKAction.moveBy(x: 0, y: 250, duration: 1.5)
-        player.run(moveUp)
+        // Player jumps if the user taps the screen under the floor
+        if (playerCanJump && pos.y < floor.position.y) {
+            print("Jump!")
+//            let moveUp = SKAction.moveBy(x: 0, y: 500, duration: 1.0)
+//            player.run(moveUp)
+            player.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 250.0))
+            playerCanJump = false
+        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -58,7 +72,10 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches
         {
             let touchLocation = touch.location(in: self)
-            player.position.x = touchLocation.x
+            // Move the player if the user moves their finger above the floor
+            if (touchLocation.y > floor.position.y) {
+                player.position.x = touchLocation.x
+            }
         }
     }
     
@@ -70,8 +87,20 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    func collisionBetween(object1: SKNode, object2: SKNode) {
-        print("collision detected")
+    // SOURCE: https://www.hackingwithswift.com/read/11/5/collision-detection-skphysicscontactdelegate
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == "player" {
+            collisionBetween(player: contact.bodyA.node!, object: contact.bodyB.node!, pointOfCollision: contact.contactPoint)
+        } else if contact.bodyB.node?.name == "player" {
+            collisionBetween(player: contact.bodyB.node!, object: contact.bodyA.node!, pointOfCollision: contact.contactPoint)
+        }
+    }
+    
+    func collisionBetween(player: SKNode, object: SKNode, pointOfCollision: CGPoint) {
+        if(object.name == "floor" && pointOfCollision.y < player.position.y) {
+            playerCanJump = true
+            print("collision detected with floor")
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {

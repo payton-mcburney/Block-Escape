@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
-                                <rect key="frame" x="149" y="746" width="77" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
+                                <rect key="frame" x="160" y="744" width="94" height="48"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="V9y-lv-cfV" kind="show" id="T3w-Qv-hvn"/>
@@ -28,6 +27,12 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="3pH-wq-URq" secondAttribute="trailing" constant="160" id="WQy-bD-U6k"/>
+                            <constraint firstItem="3pH-wq-URq" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="160" id="dDB-GH-5iR"/>
+                            <constraint firstItem="3pH-wq-URq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="700" id="j0I-P3-ITR"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="3pH-wq-URq" secondAttribute="bottom" constant="70" id="sne-QZ-NUe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                 </viewController>
@@ -43,9 +48,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
-                                <rect key="frame" x="70" y="63" width="55" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
+                                <rect key="frame" x="20" y="54" width="54" height="38"/>
                                 <state key="normal" title="Exit"/>
                                 <connections>
                                     <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromBlockEscapeWithSender:" id="1zf-YT-o7I"/>
@@ -53,6 +57,12 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tQA-5z-W7l" firstAttribute="top" secondItem="dfD-W3-ni5" secondAttribute="top" constant="10" id="NN7-6Q-Vd8"/>
+                            <constraint firstItem="dfD-W3-ni5" firstAttribute="trailing" secondItem="tQA-5z-W7l" secondAttribute="trailing" constant="340" id="bDG-y4-ZDN"/>
+                            <constraint firstItem="tQA-5z-W7l" firstAttribute="leading" secondItem="dfD-W3-ni5" secondAttribute="leading" constant="20" id="v78-Oh-RAO"/>
+                            <constraint firstItem="dfD-W3-ni5" firstAttribute="bottom" secondItem="tQA-5z-W7l" secondAttribute="bottom" constant="770" id="wQJ-1o-ouP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dfD-W3-ni5"/>
                     </view>
                 </viewController>
