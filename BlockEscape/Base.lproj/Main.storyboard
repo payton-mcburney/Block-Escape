@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="994.20289855072474" y="134.59821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Scores View Controller-->
         <scene sceneID="1yA-by-jTH">
             <objects>
-                <viewController id="Peq-wx-c2X" sceneMemberID="viewController">
+                <viewController id="Peq-wx-c2X" customClass="ScoresViewController" customModule="BlockEscape" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xma-1l-8EN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
