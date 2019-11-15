@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,9 +16,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZT-8L-l5v">
+                                <rect key="frame" x="173" y="819" width="69" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Scores">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Peq-wx-c2X" kind="show" id="LgS-P9-zrm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
                                 <rect key="frame" x="160" y="744" width="94" height="48"/>
-                                <state key="normal" title="Start"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Start">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="26" name=".AppleSystemUIFont"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <segue destination="V9y-lv-cfV" kind="show" id="T3w-Qv-hvn"/>
                                 </connections>
@@ -28,6 +47,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="2ZT-8L-l5v" secondAttribute="trailing" constant="172" id="FVd-hx-ZnH"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="173" id="JvY-H0-msB"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="2ZT-8L-l5v" secondAttribute="bottom" constant="13" id="QtK-Zp-Rii"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="top" secondItem="3pH-wq-URq" secondAttribute="bottom" constant="27" id="Svn-nF-D5c"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="3pH-wq-URq" secondAttribute="trailing" constant="160" id="WQy-bD-U6k"/>
                             <constraint firstItem="3pH-wq-URq" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="160" id="dDB-GH-5iR"/>
                             <constraint firstItem="3pH-wq-URq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="700" id="j0I-P3-ITR"/>
@@ -45,11 +68,11 @@
             <objects>
                 <viewController id="V9y-lv-cfV" customClass="BlockEscapeViewController" customModule="BlockEscape" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KIe-x8-tA8" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
-                                <rect key="frame" x="20" y="54" width="54" height="38"/>
+                                <rect key="frame" x="20" y="10" width="54" height="28"/>
                                 <state key="normal" title="Exit"/>
                                 <connections>
                                     <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromBlockEscapeWithSender:" id="1zf-YT-o7I"/>
@@ -70,6 +93,22 @@
                 <exit id="3jr-YB-IuF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="994.20289855072474" y="134.59821428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1yA-by-jTH">
+            <objects>
+                <viewController id="Peq-wx-c2X" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xma-1l-8EN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aIK-pH-5dG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2bg-mN-4c8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTD-y1-I4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="993" y="-539"/>
         </scene>
     </scenes>
 </document>
