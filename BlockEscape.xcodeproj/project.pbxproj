@@ -17,6 +17,7 @@
 		564932D6237471F700D7609B /* BlockEscapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932D5237471F700D7609B /* BlockEscapeTests.swift */; };
 		564932E1237471F700D7609B /* BlockEscapeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932E0237471F700D7609B /* BlockEscapeUITests.swift */; };
 		9F242E0A237F120E00796EA0 /* BlockEscapeControlsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F242E09237F120E00796EA0 /* BlockEscapeControlsScene.swift */; };
+		70BDD7D0237F114B003C7961 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BDD7CF237F114B003C7961 /* ScoresViewController.swift */; };
 		9F4584A72379C3A7007CE379 /* BlockEscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A62379C3A7007CE379 /* BlockEscapeViewController.swift */; };
 		9F4584A92379D806007CE379 /* BlockEscapeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A82379D806007CE379 /* BlockEscapeScene.swift */; };
 		9F4584AB2379DA82007CE379 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 9F4584AA2379DA82007CE379 /* Images */; };
@@ -58,6 +59,7 @@
 		564932E0237471F700D7609B /* BlockEscapeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeUITests.swift; sourceTree = "<group>"; };
 		564932E2237471F700D7609B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F242E09237F120E00796EA0 /* BlockEscapeControlsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeControlsScene.swift; sourceTree = "<group>"; };
+		70BDD7CF237F114B003C7961 /* ScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresViewController.swift; sourceTree = "<group>"; };
 		9F4584A62379C3A7007CE379 /* BlockEscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeViewController.swift; sourceTree = "<group>"; };
 		9F4584A82379D806007CE379 /* BlockEscapeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockEscapeScene.swift; sourceTree = "<group>"; };
 		9F4584AA2379DA82007CE379 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				564932C7237471F700D7609B /* Assets.xcassets */,
 				564932C9237471F700D7609B /* LaunchScreen.storyboard */,
 				564932CC237471F700D7609B /* Info.plist */,
+				70BDD7CF237F114B003C7961 /* ScoresViewController.swift */,
 			);
 			path = BlockEscape;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				564932C1237471F600D7609B /* GameScene.swift in Sources */,
 				9F242E0A237F120E00796EA0 /* BlockEscapeControlsScene.swift in Sources */,
+				70BDD7D0237F114B003C7961 /* ScoresViewController.swift in Sources */,
 				9F4584A92379D806007CE379 /* BlockEscapeScene.swift in Sources */,
 				9F4584A72379C3A7007CE379 /* BlockEscapeViewController.swift in Sources */,
 				564932C3237471F600D7609B /* GameViewController.swift in Sources */,
