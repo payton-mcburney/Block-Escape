@@ -28,7 +28,6 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private let playerSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
     
-    
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
         
@@ -113,7 +112,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
                 playerMoveRight = true
             }
             
-            if name == "jump_button" && playerCanJump && player.physicsBody?.velocity.dy == 0.0{
+            if name == "jump_button" && playerCanJump {//&& player.physicsBody?.velocity.dy == 0.0 {
                 print("Jump!")
                 touchedNode.setScale(0.95 * jumpButtonScale)
                 player.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpHeight))
@@ -167,9 +166,13 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func collisionBetween(player: SKNode, object: SKNode, pointOfCollision: CGPoint) {
-        if(object.name == "floor" && pointOfCollision.y < player.position.y) {
+        if (object.name == "floor" || object.name == "block") && pointOfCollision.y <= player.position.y - 65.0 {
             playerCanJump = true
             print("collision detected with floor")
+        }
+        
+        if object.name == "block" && pointOfCollision.y >= player.position.y + 65.0 {
+            print("player crushed!")
         }
     }
     
