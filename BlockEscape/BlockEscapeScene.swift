@@ -99,6 +99,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
+        //SOURCE: https://stackoverflow.com/questions/27922198/how-do-i-detect-if-an-skspritenode-has-been-touched
         if let name = touchedNode.name {
             if name == "left_button" {
                 print("Start moving left")
