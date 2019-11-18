@@ -11,6 +11,8 @@ import GameplayKit
 
 class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
+    
+    
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     var player: SKSpriteNode!
@@ -28,13 +30,16 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private let playerSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
     
+    
+    var positions: [CGPoint]! = [CGPoint]()
+    var myHero: SKSpriteNode!
+    
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
         
         // Gameplay background
         backgroundColor = SKColor.white
-        
-        
+    
         // Initialize floor
         // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
         guard let floor = childNode(withName: "floor") as? SKSpriteNode else {
@@ -73,7 +78,46 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         rightButtonScale = rightButton.xScale;
         self.rightButton = rightButton
         
+        //Source for randomly dropped items https://stackoverflow.com/questions/38601447/spawn-nodes-randomly
+        
+//        let pos1 = CGPoint(x:50,y:400)
+//        positions.append(pos1)
+//        let pos2 = CGPoint(x:100,y:400)
+//        positions.append(pos2)
+//        let pos3 = CGPoint(x:200,y:400)
+//        positions.append(pos3)
+//        let pos4 = CGPoint(x:300,y:400)
+//        positions.append(pos4)
+//        let pos5 = CGPoint(x:400,y:400)
+//        positions.append(pos5)
+//        //... or : positions = [pos1,pos2,pos3...]
+//        self.myHero = SKSpriteNode.init(color: .blue, size: CGSize(width: 50,height: 50))
+//        self.myHero.alpha = 0.0
+//        addChild(self.myHero)
+//        spawn(count : 15)
     }
+//    func spawn(count:Int) {
+//        let generateRandom = SKAction.run({
+//            let randomPosNum = randomNumber(range: 0...self.positions.count-1)
+//            let randomTime = randomDouble(1.0, max: 3.0)
+//            print("randomPos: \(randomPosNum) exit in randomTime:\(randomTime) ")
+//            self.myHero.position = self.positions[randomPosNum]
+//            self.runAction(SKAction.waitForDuration(randomTime))
+//        })
+//        let fadeIn = SKAction.fadeInWithDuration(0.5)
+//        let fadeOut = SKAction.fadeOutWithDuration(0.0)
+//        let fall = SKAction.moveToY(-30, duration: 0.5)
+//        self.myHero.runAction(SKAction.repeatAction(SKAction.sequence([generateRandom,fadeIn,fall,fadeOut]), count: count))
+//    }
+//}
+//func randomNumber(range: Range<Int> = 1...6) -> Int {
+//    let min = range.startIndex
+//    let max = range.endIndex
+//    return Int(arc4random_uniform(UInt32(max - min))) + min
+//}
+//func randomDouble(min: Double, max: Double) -> Double {
+//    return (Double(arc4random()) / Double(UINT32_MAX)) * (max - min) + min
+//}
     
     
     func touchDown(atPoint pos : CGPoint) {
