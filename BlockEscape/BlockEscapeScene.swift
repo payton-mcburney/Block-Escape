@@ -17,6 +17,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private var spinnyNode : SKShapeNode?
     var player: SKSpriteNode!
     var floor: SKSpriteNode!
+    var block: SKSpriteNode!
     var jumpButton: SKSpriteNode!
     var leftButton: SKSpriteNode!
     var rightButton: SKSpriteNode!
@@ -33,6 +34,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     var positions: [CGPoint]! = [CGPoint]()
     var myHero: SKSpriteNode!
+
     
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
@@ -46,6 +48,15 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
             fatalError("Floor node not loaded!")
         }
         self.floor = floor
+        
+        // Initialize Testing Block
+        guard let block = childNode(withName: "block") as? SKSpriteNode else {
+            fatalError("Block node not loaded!")
+        }
+        self.block = block
+        
+        //var gravity: CGVector { get set }
+        
         
         // Initialize player
         guard let player = childNode(withName: "player") as? SKSpriteNode else {
