@@ -16,7 +16,7 @@ class BlockEscapeViewController: UIViewController {
         super.viewDidLoad()
 
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
+            // Load the SKScene from 'BlockEscapeScene.sks'
             
             if let scene = SKScene(fileNamed: "BlockEscapeScene") {
                 // Set the scale mode to scale to fit the window
@@ -31,6 +31,20 @@ class BlockEscapeViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+//        if let controlsView = self.view as! SKView? {
+//            // Load the SKScene from 'BlockEscapeControlsScene.sks'
+//            
+//            if let controlsScene = SKScene(fileNamed: "BlockEscapeControlsScene") {
+//                // Set the scale mode to scale to fit the window
+//                controlsScene.scaleMode = .aspectFill
+//                
+//                // Present the scene
+//                controlsView.presentScene(controlsScene)
+//            }
+//            
+//            controlsView.ignoresSiblingOrder = true
+//        }
     }
     
     override var shouldAutorotate: Bool {

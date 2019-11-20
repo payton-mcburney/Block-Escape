@@ -11,10 +11,6 @@ import GameplayKit
 
 class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
-    
-    
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
     var player: SKSpriteNode!
     var floor: SKSpriteNode!
     var jumpButton: SKSpriteNode!
@@ -29,6 +25,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private var playerJumped: Bool!
     private let playerSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
+    private var blockSpawning: Bool! = false
     
     
     var positions: [CGPoint]! = [CGPoint]()
@@ -36,6 +33,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
+        
         
         // Gameplay background
         backgroundColor = SKColor.white
@@ -228,5 +226,21 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         if playerMoveRight {
             player.position.x += playerSpeed
         }
+        
+        SpawnBlock()
+    }
+    
+    private func SpawnBlock()
+    {
+        if !blockSpawning
+        {
+            // SOURCE: https://stackoverflow.com/questions/38031137/how-to-program-a-delay-in-swift-3
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) { // Delay after 5 seconds
+                let block: Block = Block(playerY: self.player.position.y)
+                self.addChild(block)
+                self.blockSpawning = false
+            }
+        }
+        blockSpawning = true
     }
 }
