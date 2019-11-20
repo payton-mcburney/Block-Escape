@@ -47,12 +47,6 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         }
         self.floor = floor
         
-        // Initialize Testing Block
-        guard let block = childNode(withName: "block") as? SKSpriteNode else {
-            fatalError("Block node not loaded!")
-        }
-        self.block = block
-        
         //var gravity: CGVector { get set }
         
         
