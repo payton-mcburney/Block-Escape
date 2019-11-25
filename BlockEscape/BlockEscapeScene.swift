@@ -11,21 +11,16 @@ import GameplayKit
 
 class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
-    var player: SKSpriteNode!
-    var floor: SKSpriteNode!
-    var block: SKSpriteNode!
+    var player: Player!
     var jumpButton: SKSpriteNode!
     var leftButton: SKSpriteNode!
     var rightButton: SKSpriteNode!
     var jumpButtonScale: CGFloat!
     var leftButtonScale: CGFloat!
     var rightButtonScale: CGFloat!
-    private var playerCanJump: Bool!
-    private var playerMoveLeft: Bool!
-    private var playerMoveRight: Bool!
-    private var playerJumped: Bool!
-    private let playerSpeed: CGFloat = 7.0
-    private let jumpHeight: CGFloat = 400.0
+    private var jumpButtonPressed: Bool!
+    private var leftButonPressed: Bool!
+    private var rightButtonPressed: Bool!
     private var blockSpawning: Bool! = false
     
     
@@ -36,50 +31,39 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
         
-        
         // Gameplay background
         backgroundColor = SKColor.white
-    
-        // Initialize floor
-        // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
-        guard let floor = childNode(withName: "floor") as? SKSpriteNode else {
-            fatalError("Floor node not loaded!")
-        }
-        self.floor = floor
-        
+
         //var gravity: CGVector { get set }
         
-        
         // Initialize player
-        guard let player = childNode(withName: "player") as? SKSpriteNode else {
-            fatalError("Player node not loaded!")
-        }
-        self.player = player
+        player = Player()
+        self.addChild(player)
         physicsWorld.contactDelegate = self
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
-        playerCanJump = false
-        playerJumped = false
-        playerMoveLeft = false
-        playerMoveRight = false
         
         // Initialize buttons
+        // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
         guard let jumpButton = childNode(withName: "jump_button") as? SKSpriteNode else {
             fatalError("Jump button node not loaded!")
         }
         jumpButtonScale = jumpButton.xScale;
         self.jumpButton = jumpButton
+        jumpButtonPressed = false
         
         guard let leftButton = childNode(withName: "left_button") as? SKSpriteNode else {
             fatalError("Left button node not loaded!")
         }
         leftButtonScale = leftButton.xScale;
         self.leftButton = leftButton
+        leftButonPressed = false
         
         guard let rightButton = childNode(withName: "right_button") as? SKSpriteNode else {
             fatalError("Right button node not loaded!")
         }
         rightButtonScale = rightButton.xScale;
         self.rightButton = rightButton
+        rightButtonPressed = false
         
         //Source for randomly dropped items https://stackoverflow.com/questions/38601447/spawn-nodes-randomly
         
@@ -150,21 +134,20 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
             if name == "left_button" {
                 print("Start moving left")
                 touchedNode.setScale(0.95 * leftButtonScale)
-                playerMoveLeft = true
+                leftButonPressed = true
             }
             
             if name == "right_button" {
                 print("Start moving right")
                 touchedNode.setScale(0.95 * rightButtonScale)
-                playerMoveRight = true
+                rightButtonPressed = true
             }
             
-            if name == "jump_button" && playerCanJump {//&& player.physicsBody?.velocity.dy == 0.0 {
+            if name == "jump_button" {
                 print("Jump!")
                 touchedNode.setScale(0.95 * jumpButtonScale)
-                player.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpHeight))
-                playerCanJump = false
-                playerJumped = true
+                player.jump()
+                jumpButtonPressed = true
             }
         }
     }
@@ -181,20 +164,20 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if playerMoveLeft {
+        if leftButonPressed {
             print("Stop moving left")
-            playerMoveLeft = false
+            leftButonPressed = false
             leftButton.setScale(leftButtonScale)
         }
         
-        if playerMoveRight {
+        if rightButtonPressed {
             print("Stop moving right")
-            playerMoveRight = false
+            rightButtonPressed = false
             rightButton.setScale(rightButtonScale)
         }
         
-        if playerJumped {
-            playerJumped = false
+        if jumpButtonPressed {
+            jumpButtonPressed = false
             jumpButton.setScale(jumpButtonScale)
         }
     }
@@ -206,15 +189,15 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     // SOURCE: https://www.hackingwithswift.com/read/11/5/collision-detection-skphysicscontactdelegate
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "player" {
-            collisionBetween(player: contact.bodyA.node!, object: contact.bodyB.node!, pointOfCollision: contact.contactPoint)
+            handlePlayerCollision(object: contact.bodyB.node!, pointOfCollision: contact.contactPoint)
         } else if contact.bodyB.node?.name == "player" {
-            collisionBetween(player: contact.bodyB.node!, object: contact.bodyA.node!, pointOfCollision: contact.contactPoint)
+            handlePlayerCollision(object: contact.bodyA.node!, pointOfCollision: contact.contactPoint)
         }
     }
     
-    func collisionBetween(player: SKNode, object: SKNode, pointOfCollision: CGPoint) {
+    func handlePlayerCollision(object: SKNode, pointOfCollision: CGPoint) {
         if (object.name == "floor" || object.name == "block") && pointOfCollision.y <= player.position.y - 65.0 {
-            playerCanJump = true
+            player.landed()
             print("collision detected with floor")
         }
         
@@ -225,11 +208,11 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        if playerMoveLeft {
-            player.position.x -= playerSpeed
+        if leftButonPressed {
+            player.moveLeft()
         }
-        if playerMoveRight {
-            player.position.x += playerSpeed
+        if rightButtonPressed {
+            player.moveRight()
         }
         
         SpawnBlock()

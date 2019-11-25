@@ -11,16 +11,15 @@ import SpriteKit
 
 class Player: SKSpriteNode
 {
-    private var movingLeft: Bool!
-    private var movingRight: Bool!
     private var canJump: Bool!
     private let moveSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
     
-    init(imageNamed: String)
+    init()
     {
-        let texture = SKTexture(imageNamed: imageNamed)
+        let texture = SKTexture(imageNamed: "player.png")
         super.init(texture: texture, color: SKColor.clear, size: CGSize(width: 100, height: 140))
+        self.name = "player"
         self.position = CGPoint(x: 0, y: -240)
         createPhysicsBody()
         
@@ -44,18 +43,12 @@ class Player: SKSpriteNode
     
     func moveLeft()
     {
-        if movingLeft
-        {
-            self.position.x -= moveSpeed
-        }
+        self.position.x -= moveSpeed
     }
     
     func moveRight()
     {
-        if movingRight
-        {
-            self.position.x += moveSpeed
-        }
+        self.position.x += moveSpeed
     }
     
     func jump()
@@ -67,7 +60,7 @@ class Player: SKSpriteNode
         }
     }
     
-    func playerLanded()
+    func landed()
     {
         canJump = true
     }
