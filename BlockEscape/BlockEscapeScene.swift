@@ -22,6 +22,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     private var leftButonPressed: Bool!
     private var rightButtonPressed: Bool!
     private var blockSpawning: Bool! = false
+    var playerHealth = 100
     
     
     var positions: [CGPoint]! = [CGPoint]()
@@ -203,10 +204,18 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         
         if object.name == "block" && pointOfCollision.y >= player.position.y + 65.0 {
             print("player crushed!")
+            playerHealth -= 30
+            print("player health \(playerHealth)")
         }
-    }
+        
+        //if playerHealth < 1 {
+//            let viewController: ScoresViewController = self.storyboard?.instantiateViewControllerWithIdentifier("VC") as ScoresViewController
+//            self.presentViewController(viewController, animated: true, completion: nil)
+            
     
-    override func update(_ currentTime: TimeInterval) {
+    //}
+    
+     func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if leftButonPressed {
             player.moveLeft()
@@ -218,7 +227,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         SpawnBlock()
     }
     
-    private func SpawnBlock()
+     func SpawnBlock()
     {
         if !blockSpawning
         {
@@ -231,4 +240,6 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         }
         blockSpawning = true
     }
+    
+}
 }
