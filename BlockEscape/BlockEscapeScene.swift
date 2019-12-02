@@ -11,7 +11,11 @@ import GameplayKit
 
 class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
+    let cameraNode = SKCameraNode()
     var player: Player!
+    var maxPlayerHeight: CGFloat!
+    var leftWall: SKSpriteNode!
+    var rightWall: SKSpriteNode!
     var jumpButton: SKSpriteNode!
     var leftButton: SKSpriteNode!
     var rightButton: SKSpriteNode!
@@ -41,6 +45,7 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         physicsWorld.contactDelegate = self
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
+        maxPlayerHeight = player.position.y
         
         // Initialize buttons
         // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
@@ -65,7 +70,23 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         self.rightButton = rightButton
         rightButtonPressed = false
         
-        //Source for randomly dropped items https://stackoverflow.com/questions/38601447/spawn-nodes-randomly
+        // Initialize walls
+        guard let leftWall = childNode(withName: "left_wall") as? SKSpriteNode else {
+            fatalError("Left wall node not loaded!")
+        }
+        self.leftWall = leftWall
+        
+        guard let rightWall = childNode(withName: "right_wall") as? SKSpriteNode else {
+            fatalError("Right wall node not loaded!")
+        }
+        self.rightWall = rightWall
+        
+        // Initialize camera
+        // SOURCE: https://developer.apple.com/documentation/spritekit/skscene/1519696-camera
+        self.addChild(cameraNode)
+        self.camera = cameraNode
+        
+        
         
 //        let pos1 = CGPoint(x:50,y:400)
 //        positions.append(pos1)
@@ -206,8 +227,9 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // Called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        // Handle horizontal player movement
         if leftButonPressed {
             player.moveLeft()
         }
@@ -215,9 +237,27 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
             player.moveRight()
         }
         
+        // Find the largest y position the player has reached
+        if maxPlayerHeight < player.position.y {
+            maxPlayerHeight = player.position.y
+        }
+        
+        // Set camera and button positions based on player position
+        cameraNode.position = CGPoint(x: cameraNode.position.x, y: player.position.y + 240)
+        leftButton.position = CGPoint(x: leftButton.position.x, y: cameraNode.position.y - 540)
+        rightButton.position = CGPoint(x: rightButton.position.x, y: cameraNode.position.y - 540)
+        jumpButton.position = CGPoint(x: jumpButton.position.x, y: cameraNode.position.y - 540)
+        
+        // Set wall height and position based on the highest vertical point the player has reached
+//        leftWall.yScale = (maxPlayerHeight + 240) / 20
+//        leftWall.position = CGPoint(x: leftWall.position.x, y: leftWall.size.width / 2 - 325)
+//        rightWall.size = CGSize(width: maxPlayerHeight + 1500, height: 90)
+//        rightWall.position = CGPoint(x: rightWall.position.x, y: rightWall.size.width / 2 - 325)
+        
         SpawnBlock()
     }
     
+    // Spawns blocks randomly every five seconds
     private func SpawnBlock()
     {
         if !blockSpawning
