@@ -1,5 +1,5 @@
 //
-//  BlockEscapeControlsScene.swift
+//  GameControls.swift
 //  BlockEscape
 //
 //  Created by Payton McBurney on 11/15/19.
@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 //SOURCE: https://stackoverflow.com/questions/41108878/how-to-control-scenekit-character-movement-with-skspritenode/41148410
-class BlockEscapeControls {
+class GameControls {
     private var player: Player!
     private var jumpButton: SKSpriteNode!
     private var leftButton: SKSpriteNode!
