@@ -13,20 +13,15 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     
     let cameraNode = SKCameraNode()
     var player: Player!
-    var maxPlayerHeight: CGFloat!
+    var controls: BlockEscapeControls!
     var leftWall: SKSpriteNode!
     var rightWall: SKSpriteNode!
-    var jumpButton: SKSpriteNode!
-    var leftButton: SKSpriteNode!
-    var rightButton: SKSpriteNode!
-    var jumpButtonScale: CGFloat!
-    var leftButtonScale: CGFloat!
-    var rightButtonScale: CGFloat!
-    private var jumpButtonPressed: Bool!
-    private var leftButonPressed: Bool!
-    private var rightButtonPressed: Bool!
+    var leftWallScale: CGFloat!
+    var rightWallScale: CGFloat!
     private var blockSpawning: Bool! = false
-    var playerHealth = 100
+    
+    var healthDisplay: SKLabelNode!
+    var scoreDisplay: SKLabelNode!
     
     
     var positions: [CGPoint]! = [CGPoint]()
@@ -34,52 +29,40 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func didMove(to view: SKView) {
-        // SOURCE: https://www.raywenderlich.com/71-spritekit-tutorial-for-beginners for adding sprites programmatically
-        
         // Gameplay background
         backgroundColor = SKColor.white
 
-        //var gravity: CGVector { get set }
-        
         // Initialize player
         player = Player()
         self.addChild(player)
         physicsWorld.contactDelegate = self
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
-        maxPlayerHeight = player.position.y
         
-        // Initialize buttons
-        // SOURCE: https://stackoverflow.com/questions/40294942/how-do-i-use-sks-skspritenode-in-gamescene
-        guard let jumpButton = childNode(withName: "jump_button") as? SKSpriteNode else {
-            fatalError("Jump button node not loaded!")
-        }
-        jumpButtonScale = jumpButton.xScale;
-        self.jumpButton = jumpButton
-        jumpButtonPressed = false
+        // Initialize controls
+        controls = BlockEscapeControls(player: player, scene: self)
         
-        guard let leftButton = childNode(withName: "left_button") as? SKSpriteNode else {
-            fatalError("Left button node not loaded!")
+        // Initialize health and score labels
+        guard let healthDisplay = childNode(withName: "health") as? SKLabelNode else {
+            fatalError("Health display node not loaded!")
         }
-        leftButtonScale = leftButton.xScale;
-        self.leftButton = leftButton
-        leftButonPressed = false
+        self.healthDisplay = healthDisplay
         
-        guard let rightButton = childNode(withName: "right_button") as? SKSpriteNode else {
-            fatalError("Right button node not loaded!")
+        guard let scoreDisplay = childNode(withName: "score") as? SKLabelNode else {
+            fatalError("Score display node not loaded!")
         }
-        rightButtonScale = rightButton.xScale;
-        self.rightButton = rightButton
-        rightButtonPressed = false
+        self.scoreDisplay = scoreDisplay
         
         // Initialize walls
         guard let leftWall = childNode(withName: "left_wall") as? SKSpriteNode else {
             fatalError("Left wall node not loaded!")
         }
+        leftWallScale = leftWall.xScale
         self.leftWall = leftWall
         
         guard let rightWall = childNode(withName: "right_wall") as? SKSpriteNode else {
             fatalError("Right wall node not loaded!")
         }
+        rightWallScale = rightWall.xScale
         self.rightWall = rightWall
         
         // Initialize camera
@@ -128,84 +111,15 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
 //    return (Double(arc4random()) / Double(UINT32_MAX)) * (max - min) + min
 //}
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-//        // Player jumps if the user taps the screen under the floor
-//        if (playerCanJump && pos.y < floor.position.y) {
-//            print("Jump!")
-//            player.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 250.0))
-//            playerCanJump = false
-//        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first! as UITouch
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
-        
-        //SOURCE: https://stackoverflow.com/questions/27922198/how-do-i-detect-if-an-skspritenode-has-been-touched
-        if let name = touchedNode.name {
-            if name == "left_button" {
-                print("Start moving left")
-                touchedNode.setScale(0.95 * leftButtonScale)
-                leftButonPressed = true
-            }
-            
-            if name == "right_button" {
-                print("Start moving right")
-                touchedNode.setScale(0.95 * rightButtonScale)
-                rightButtonPressed = true
-            }
-            
-            if name == "jump_button" {
-                print("Jump!")
-                touchedNode.setScale(0.95 * jumpButtonScale)
-                player.jump()
-                jumpButtonPressed = true
-            }
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches
-//        {
-//            let touchLocation = touch.location(in: self)
-//            // Move the player if the user moves their finger above the floor
-//            if (touchLocation.y > floor.position.y) {
-//                player.position.x = touchLocation.x
-//            }
-//        }
+        controls.handleButtonPressBegin(touchedNode: touchedNode)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if leftButonPressed {
-            print("Stop moving left")
-            leftButonPressed = false
-            leftButton.setScale(leftButtonScale)
-        }
-        
-        if rightButtonPressed {
-            print("Stop moving right")
-            rightButtonPressed = false
-            rightButton.setScale(rightButtonScale)
-        }
-        
-        if jumpButtonPressed {
-            jumpButtonPressed = false
-            jumpButton.setScale(jumpButtonScale)
-        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        controls.handleButtonPressEnd()
     }
     
     // SOURCE: https://www.hackingwithswift.com/read/11/5/collision-detection-skphysicscontactdelegate
@@ -225,11 +139,11 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
         
         if object.name == "block" && pointOfCollision.y >= player.position.y + 65.0 {
             print("player crushed!")
-            playerHealth -= 30
-            print("player health \(playerHealth)")
+            player.takeDamage(damage: 20)
+            print("player health \(player.getHealth())")
         }
         
-        //if playerHealth < 1 {
+        //if player.isDead() {
         //            let viewController: ScoresViewController = self.storyboard?.instantiateViewControllerWithIdentifier("VC") as ScoresViewController
         //            self.presentViewController(viewController, animated: true, completion: nil)
     }
@@ -237,38 +151,34 @@ class BlockEscapeScene: SKScene, SKPhysicsContactDelegate {
     // Called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
         // Handle horizontal player movement
-        if leftButonPressed {
-            player.moveLeft()
-        }
-        if rightButtonPressed {
-            player.moveRight()
-        }
+        controls.handlePlayerMovement()
         
-        // Find the largest y position the player has reached
-        if maxPlayerHeight < player.position.y {
-            maxPlayerHeight = player.position.y
-        }
+        // Update score and health displays
+        player.updateScore()
+        healthDisplay.text = "Health: \(player.getHealth())"
+        healthDisplay.fontColor = UIColor.black
+        scoreDisplay.text = "Score: \(player.getScore())"
+        scoreDisplay.fontColor = UIColor.black
         
-        // Set camera and button positions based on player position
+        // Set camera, button, and label positions based on player position
         cameraNode.position = CGPoint(x: cameraNode.position.x, y: player.position.y + 240)
-        leftButton.position = CGPoint(x: leftButton.position.x, y: cameraNode.position.y - 540)
-        rightButton.position = CGPoint(x: rightButton.position.x, y: cameraNode.position.y - 540)
-        jumpButton.position = CGPoint(x: jumpButton.position.x, y: cameraNode.position.y - 540)
+        controls.updateButtonPositions()
+        healthDisplay.position = CGPoint(x: healthDisplay.position.x, y: cameraNode.position.y + 510)
+        scoreDisplay.position = CGPoint(x: scoreDisplay.position.x, y: cameraNode.position.y + 560)
         
         // Set wall height and position based on the highest vertical point the player has reached
-//        leftWall.yScale = (maxPlayerHeight + 240) / 20
-//        leftWall.position = CGPoint(x: leftWall.position.x, y: leftWall.size.width / 2 - 325)
-//        rightWall.size = CGSize(width: maxPlayerHeight + 1500, height: 90)
-//        rightWall.position = CGPoint(x: rightWall.position.x, y: rightWall.size.width / 2 - 325)
+        leftWall.xScale = leftWallScale * ((player.getMaxHeight() + 1240) / 1000)
+        leftWall.position = CGPoint(x: leftWall.position.x, y: leftWall.size.width / 2 - 325)
+        rightWall.xScale = rightWallScale * ((player.getMaxHeight() + 1240) / 1000)
+        rightWall.position = CGPoint(x: rightWall.position.x, y: rightWall.size.width / 2 - 325)
         
         SpawnBlock()
+        print("Score: \(player.getScore())")
     }
     
     // Spawns blocks randomly every five seconds
-    private func SpawnBlock()
-    {
-        if !blockSpawning
-        {
+    private func SpawnBlock() {
+        if !blockSpawning {
             // SOURCE: https://stackoverflow.com/questions/38031137/how-to-program-a-delay-in-swift-3
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) { // Delay after 5 seconds
                 let block: Block = Block(playerY: self.player.position.y)

@@ -14,24 +14,31 @@ class Player: SKSpriteNode
     private var canJump: Bool!
     private let moveSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
+    private let startHeight: Int = -240
+    private var maxHeight: CGFloat!
+    private var score: Int!
+    private let maxHealth: Int = 100
+    private var health: Int!
     
-    init()
-    {
+    
+    
+    init() {
         let texture = SKTexture(imageNamed: "player.png")
         super.init(texture: texture, color: SKColor.clear, size: CGSize(width: 100, height: 140))
         self.name = "player"
-        self.position = CGPoint(x: 0, y: -240)
+        self.position = CGPoint(x: 0, y: startHeight)
+        maxHeight = self.position.y
+        score = 0
         createPhysicsBody()
-        
         canJump = false
+        health = maxHealth
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createPhysicsBody()
-    {
+    private func createPhysicsBody() {
         let physicsBody = SKPhysicsBody(rectangleOf: self.size)
         physicsBody.affectedByGravity = true
         physicsBody.isDynamic = true
@@ -41,27 +48,51 @@ class Player: SKSpriteNode
         self.physicsBody = physicsBody
     }
     
-    func moveLeft()
-    {
+    func moveLeft() {
         self.position.x -= moveSpeed
     }
     
-    func moveRight()
-    {
+    func moveRight() {
         self.position.x += moveSpeed
     }
     
-    func jump()
-    {
-        if canJump
-        {
+    func jump() {
+        if canJump {
             self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: jumpHeight))
             canJump = false
         }
     }
     
-    func landed()
-    {
+    func landed() {
         canJump = true
+    }
+    
+    // Find the largest y position the player has reached
+    func updateScore() {
+        if maxHeight < self.position.y {
+            maxHeight = self.position.y
+        }
+        
+        score = Int(maxHeight + 240)
+    }
+    
+    func getMaxHeight() -> CGFloat {
+        return maxHeight
+    }
+    
+    func getScore() -> Int {
+        return score
+    }
+    
+    func takeDamage(damage: Int) {
+        health -= damage
+    }
+    
+    func getHealth() -> Int {
+        return health
+    }
+    
+    func isDead() -> Bool {
+        return (health <= 0)
     }
 }
