@@ -148,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            player.freeze()
 //            for node in self.children as [SKNode] {
 //                node.isPaused = false
-            }
+//            }
     }
     }
     
