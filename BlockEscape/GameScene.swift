@@ -139,12 +139,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if object.name == "block" && pointOfCollision.y >= player.position.y + 65.0 {
             print("player crushed!")
-            player.takeDamage(damage: 20)
+            player.takeDamage(damage: 70)
         }
         
-        //if player.isDead() {
-        //            let viewController: ScoresViewController = self.storyboard?.instantiateViewControllerWithIdentifier("VC") as ScoresViewController
-        //            self.presentViewController(viewController, animated: true, completion: nil)
+        if player.isDead() {
+            print("You dead")
+//            physicsWorld.gravity = .zero
+//            player.freeze()
+//            for node in self.children as [SKNode] {
+//                node.isPaused = false
+            }
+    }
     }
     
     // Called before each frame is rendered
