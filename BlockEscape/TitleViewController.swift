@@ -48,10 +48,17 @@ class TitleViewController: UIViewController {
         return true
     }
     
-    @IBAction func unwindFromBlockEscape(sender:
+    @IBAction func unwindFromGame(sender:
         UIStoryboardSegue)
     {
         
     }
+    
+    @IBAction func unwindFromScores(sender:
+        UIStoryboardSegue)
+    {
+        
+    }
+
 
 }

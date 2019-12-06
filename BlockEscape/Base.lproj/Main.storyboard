@@ -77,7 +77,7 @@
                                 <rect key="frame" x="340" y="44" width="54" height="38"/>
                                 <state key="normal" title="Exit"/>
                                 <connections>
-                                    <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromBlockEscapeWithSender:" id="1zf-YT-o7I"/>
+                                    <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromGameWithSender:" id="1zf-YT-o7I"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -100,15 +100,23 @@
         <scene sceneID="1yA-by-jTH">
             <objects>
                 <viewController id="Peq-wx-c2X" customClass="ScoresViewController" customModule="BlockEscape" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xma-1l-8EN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B5t-pZ-4S1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="aIK-pH-5dG"/>
-                    </view>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qek-uh-CkV">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Exit"/>
+                            <connections>
+                                <segue destination="j0n-an-9Vn" kind="unwind" unwindAction="unwindFromScoresWithSender:" id="TNm-nL-zBu"/>
+                            </connections>
+                        </button>
+                    </tableView>
                     <navigationItem key="navigationItem" id="2bg-mN-4c8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTD-y1-I4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="j0n-an-9Vn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="993" y="-539"/>
         </scene>
