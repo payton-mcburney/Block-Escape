@@ -48,6 +48,14 @@ class Player: SKSpriteNode
         self.physicsBody = physicsBody
     }
     
+    func freeze(){
+        self.physicsBody?.pinned = true
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.affectedByGravity = false
+        canJump = false
+    }
+    
     func moveLeft() {
         self.position.x -= moveSpeed
     }
