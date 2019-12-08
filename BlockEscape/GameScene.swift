@@ -144,6 +144,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if player.isDead() {
             print("You dead")
+            
+            // SOURCE: https://medium.com/aviabird/the-one-with-userdefaults-aab2c2a7e170
+            // Stores the current score to the scoreboard
+            if var scores = UserDefaults.standard.object(forKey: "scores") as? Array<Int> {
+                scores.append(player.getScore())
+                UserDefaults.standard.set(scores, forKey: "scores")
+            }
+            else {
+                var scores = [Int]()
+                scores.append(player.getScore())
+                UserDefaults.standard.set(scores, forKey: "scores")
+            }
             //self.player.setHealthZ()
 //            physicsWorld.gravity = .zero
 //            self.player.freeze()

@@ -13,8 +13,12 @@ class ScoresViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let scores = UserDefaults.standard.object(forKey: "scores") as? Array<Int> {
+            print(scores)
+        }
+        
     }
+    
     
 
     /*
