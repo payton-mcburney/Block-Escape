@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rightWallScale: CGFloat!
     private var blockSpawning: Bool! = false
     
+    
     var healthDisplay: SKLabelNode!
     var scoreDisplay: SKLabelNode!
     
@@ -31,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // Gameplay background
         backgroundColor = SKColor.white
+        
 
         // Initialize player
         player = Player()
@@ -143,6 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if player.isDead() {
+            // Button that appears
             print("You dead")
             
             // SOURCE: https://medium.com/aviabird/the-one-with-userdefaults-aab2c2a7e170
