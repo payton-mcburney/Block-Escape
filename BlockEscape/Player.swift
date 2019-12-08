@@ -34,6 +34,11 @@ class Player: SKSpriteNode
         health = maxHealth
     }
     
+    func setHealthZ(){
+        self.health = 0
+        print("Oh no!!!!")
+    }
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -144,11 +144,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if player.isDead() {
             print("You dead")
+            //self.player.setHealthZ()
 //            physicsWorld.gravity = .zero
-//            player.freeze()
+//            self.player.freeze()
 //            for node in self.children as [SKNode] {
 //                node.isPaused = false
 //            }
+            self.player.isPaused = true
+            self.view?.isPaused = true
+            
+            
     }
     }
     
