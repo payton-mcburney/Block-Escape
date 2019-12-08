@@ -22,6 +22,7 @@
 		9F4584A92379D806007CE379 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A82379D806007CE379 /* GameScene.swift */; };
 		9F4584AB2379DA82007CE379 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 9F4584AA2379DA82007CE379 /* Images */; };
 		9F4584AF2379ED03007CE379 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F4584AE2379ED03007CE379 /* GameScene.sks */; };
+		9F6BB6CB239DB6B200D0A15F /* ScoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BB6CA239DB6B200D0A15F /* ScoresTableViewCell.swift */; };
 		9F701F59237A224600BF547B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F701F57237A224600BF547B /* Main.storyboard */; };
 		9FCD53602385A3BD003C5F9F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD535F2385A3BD003C5F9F /* Player.swift */; };
 		9FCD53622385AA29003C5F9F /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD53612385AA29003C5F9F /* Block.swift */; };
@@ -66,6 +67,7 @@
 		9F4584A82379D806007CE379 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		9F4584AA2379DA82007CE379 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		9F4584AE2379ED03007CE379 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		9F6BB6CA239DB6B200D0A15F /* ScoresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresTableViewCell.swift; sourceTree = "<group>"; };
 		9F701F58237A224600BF547B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FCD535F2385A3BD003C5F9F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9FCD53612385AA29003C5F9F /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				70BDD7CF237F114B003C7961 /* ScoresViewController.swift */,
 				9FCD535F2385A3BD003C5F9F /* Player.swift */,
 				9FCD53612385AA29003C5F9F /* Block.swift */,
+				9F6BB6CA239DB6B200D0A15F /* ScoresTableViewCell.swift */,
 			);
 			path = BlockEscape;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				9F4584A72379C3A7007CE379 /* GameViewController.swift in Sources */,
 				9FCD53622385AA29003C5F9F /* Block.swift in Sources */,
 				564932C3237471F600D7609B /* TitleViewController.swift in Sources */,
+				9F6BB6CB239DB6B200D0A15F /* ScoresTableViewCell.swift in Sources */,
 				564932BB237471F600D7609B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
