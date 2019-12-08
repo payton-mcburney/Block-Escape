@@ -73,8 +73,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
-                                <rect key="frame" x="340" y="44" width="54" height="38"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il9-NG-lsr">
+                                <rect key="frame" x="328" y="158" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24692971328048774" green="0.47450980390000003" blue="0.077570829856268522" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Scores"/>
+                                <connections>
+                                    <segue destination="Peq-wx-c2X" kind="show" id="TAr-d5-O0X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
+                                <rect key="frame" x="328" y="67" width="66" height="42"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Exit"/>
                                 <connections>
                                     <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromGameWithSender:" id="1zf-YT-o7I"/>
@@ -121,4 +133,7 @@
             <point key="canvasLocation" x="993" y="-539"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TAr-d5-O0X"/>
+    </inferredMetricsTieBreakers>
 </document>
