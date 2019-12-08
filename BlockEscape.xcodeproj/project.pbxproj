@@ -16,6 +16,7 @@
 		564932CB237471F700D7609B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 564932C9237471F700D7609B /* LaunchScreen.storyboard */; };
 		564932D6237471F700D7609B /* BlockEscapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932D5237471F700D7609B /* BlockEscapeTests.swift */; };
 		564932E1237471F700D7609B /* BlockEscapeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564932E0237471F700D7609B /* BlockEscapeUITests.swift */; };
+		56C1A7D3239DB00300D72772 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A82379D806007CE379 /* GameScene.swift */; };
 		70BDD7D0237F114B003C7961 /* ScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BDD7CF237F114B003C7961 /* ScoresViewController.swift */; };
 		9F242E0A237F120E00796EA0 /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F242E09237F120E00796EA0 /* GameControls.swift */; };
 		9F4584A72379C3A7007CE379 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4584A62379C3A7007CE379 /* GameViewController.swift */; };
@@ -313,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56C1A7D3239DB00300D72772 /* GameScene.swift in Sources */,
 				564932D6237471F700D7609B /* BlockEscapeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

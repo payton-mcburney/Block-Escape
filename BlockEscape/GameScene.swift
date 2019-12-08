@@ -156,11 +156,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scores.append(player.getScore())
                 UserDefaults.standard.set(scores, forKey: "scores")
             }
+            //self.player.setHealthZ()
 //            physicsWorld.gravity = .zero
-//            player.freeze()
+//            self.player.freeze()
 //            for node in self.children as [SKNode] {
 //                node.isPaused = false
 //            }
+            self.player.isPaused = true
+            self.view?.isPaused = true
+            
+            
     }
     }
     
