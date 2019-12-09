@@ -20,10 +20,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rightWallScale: CGFloat!
     private var blockSpawning: Bool! = false
     
-    
     var healthDisplay: SKLabelNode!
     var scoreDisplay: SKLabelNode!
-    
+    var gameOverDisplay: SKLabelNode!
     
     var positions: [CGPoint]! = [CGPoint]()
     var myHero: SKSpriteNode!
@@ -43,16 +42,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Initialize controls
         controls = GameControls(player: player, scene: self)
         
-        // Initialize health and score labels
+        // Initialize health, score, and game over labels
         guard let healthDisplay = childNode(withName: "health") as? SKLabelNode else {
             fatalError("Health display node not loaded!")
         }
+        healthDisplay.fontColor = UIColor.black
         self.healthDisplay = healthDisplay
         
         guard let scoreDisplay = childNode(withName: "score") as? SKLabelNode else {
             fatalError("Score display node not loaded!")
         }
+        scoreDisplay.fontColor = UIColor.black
         self.scoreDisplay = scoreDisplay
+        
+        guard let gameOverDisplay = childNode(withName: "game_over") as? SKLabelNode else {
+            fatalError("Game over display node not loaded!")
+        }
+        gameOverDisplay.fontColor = UIColor.black
+        self.gameOverDisplay = gameOverDisplay
         
         // Initialize walls
         guard let leftWall = childNode(withName: "left_wall") as? SKSpriteNode else {
@@ -141,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if object.name == "block" && pointOfCollision.y >= player.position.y + 65.0 {
             print("player crushed!")
-            player.takeDamage(damage: 70)
+            player.takeDamage(damage: 20)
         }
         
         if player.isDead() {
@@ -159,7 +166,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scores.append(player.getScore())
                 UserDefaults.standard.set(scores, forKey: "scores")
             }
-            //self.player.setHealthZ()
+            self.player.setHealthZ()
+            healthDisplay.text = "Health: \(player.getHealth())"
+            gameOverDisplay.isHidden = false
+            scoreDisplay.isHidden = true
+            healthDisplay.isHidden = true
 //            physicsWorld.gravity = .zero
 //            self.player.freeze()
 //            for node in self.children as [SKNode] {
@@ -180,9 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Update score and health displays
         player.updateScore()
         healthDisplay.text = "Health: \(player.getHealth())"
-        healthDisplay.fontColor = UIColor.black
         scoreDisplay.text = "Score: \(player.getScore())"
-        scoreDisplay.fontColor = UIColor.black
         
         // Set camera, button, and label positions based on player position
         cameraNode.position = CGPoint(x: cameraNode.position.x, y: player.position.y + 240)

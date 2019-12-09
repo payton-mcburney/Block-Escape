@@ -26,6 +26,7 @@ class ScoresViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
         cell.textLabel?.text = String(scores[indexPath.item])
+        cell.textLabel?.textAlignment = NSTextAlignment.center
         return cell
     }
 

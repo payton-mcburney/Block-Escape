@@ -60,5 +60,9 @@ class TitleViewController: UIViewController {
         
     }
 
-
+    @IBAction func clearScoresOnClick(_ sender: Any) {
+        let scores = [Int]()
+        UserDefaults.standard.set(scores, forKey: "scores")
+    }
+    
 }
