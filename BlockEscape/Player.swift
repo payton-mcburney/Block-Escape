@@ -14,7 +14,7 @@ class Player: SKSpriteNode
     private var canJump: Bool!
     private let moveSpeed: CGFloat = 7.0
     private let jumpHeight: CGFloat = 400.0
-    private let startHeight: Int = -240
+    private let startHeight: Int = -410
     private var maxHeight: CGFloat!
     private var score: Int!
     private let maxHealth: Int = 100
@@ -86,7 +86,7 @@ class Player: SKSpriteNode
             maxHeight = self.position.y
         }
         
-        score = Int(maxHeight + 240)
+        score = Int(maxHeight + 410)
     }
     
     func getMaxHeight() -> CGFloat {
