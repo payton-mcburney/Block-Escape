@@ -16,21 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="menu_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="sA4-C5-x8f">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
-                                <rect key="frame" x="109" y="576" width="196" height="74"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-wq-URq">
+                                <rect key="frame" x="109" y="576" width="196" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="GwT-wj-ZFz"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="start_button.png">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                </state>
+                                <state key="normal" backgroundImage="start_button.png"/>
                                 <connections>
                                     <segue destination="V9y-lv-cfV" kind="show" id="T3w-Qv-hvn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ZT-8L-l5v">
-                                <rect key="frame" x="57" y="688" width="129" height="77"/>
+                                <rect key="frame" x="57" y="681" width="142" height="77"/>
                                 <state key="normal" backgroundImage="scores_button.png">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Scores">
@@ -46,9 +44,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eo6-Bl-Nrs">
-                                <rect key="frame" x="239" y="688" width="130" height="77"/>
+                                <rect key="frame" x="239" y="681" width="130" height="77"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="nPh-Ib-FVA"/>
+                                    <constraint firstAttribute="width" constant="130" id="E2e-XP-bzp"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="clear_scores_button.png">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,18 +58,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3pH-wq-URq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="532" id="8xb-rR-LD4"/>
-                            <constraint firstItem="3pH-wq-URq" firstAttribute="centerX" secondItem="sA4-C5-x8f" secondAttribute="centerX" id="9FR-aA-i0w"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="Eo6-Bl-Nrs" secondAttribute="bottom" constant="97" id="FtO-w6-8xJ"/>
-                            <constraint firstItem="3pH-wq-URq" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="IEI-0S-DbU"/>
-                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="57" id="L5t-Hg-JSI"/>
-                            <constraint firstItem="Eo6-Bl-Nrs" firstAttribute="top" secondItem="3pH-wq-URq" secondAttribute="bottom" constant="38" id="QZx-QU-SFy"/>
-                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="top" secondItem="Eo6-Bl-Nrs" secondAttribute="top" id="TWk-WF-TVV"/>
-                            <constraint firstItem="3pH-wq-URq" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="109" id="Vax-qh-35p"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="Eo6-Bl-Nrs" secondAttribute="trailing" constant="45" id="Wk3-Fg-v6Z"/>
-                            <constraint firstItem="Eo6-Bl-Nrs" firstAttribute="leading" secondItem="2ZT-8L-l5v" secondAttribute="trailing" constant="53" id="iIe-rA-ioQ"/>
-                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="bottom" secondItem="Eo6-Bl-Nrs" secondAttribute="bottom" id="xJL-tl-Ajk"/>
-                            <constraint firstItem="sA4-C5-x8f" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="yKa-Nc-qo5"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="top" secondItem="Eo6-Bl-Nrs" secondAttribute="top" id="6Gx-MU-eS0"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="Eo6-Bl-Nrs" secondAttribute="trailing" constant="45" id="6X3-wd-sLG"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="57" id="MoA-IP-yw9"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="bottom" secondItem="Eo6-Bl-Nrs" secondAttribute="bottom" id="Sin-Of-xhG"/>
+                            <constraint firstItem="3pH-wq-URq" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="109" id="aDI-5z-Kym"/>
+                            <constraint firstItem="3pH-wq-URq" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="tU1-2o-42I"/>
+                            <constraint firstItem="3pH-wq-URq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="532" id="uzX-A6-JLx"/>
+                            <constraint firstItem="2ZT-8L-l5v" firstAttribute="top" secondItem="3pH-wq-URq" secondAttribute="bottom" constant="40" id="yNd-5a-o3G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
@@ -171,7 +165,6 @@
     </scenes>
     <resources>
         <image name="clear_scores_button.png" width="106.5" height="57.75"/>
-        <image name="menu_background.png" width="414" height="896"/>
         <image name="scores_button.png" width="106.5" height="43.5"/>
         <image name="start_button.png" width="91.5" height="43.5"/>
     </resources>
