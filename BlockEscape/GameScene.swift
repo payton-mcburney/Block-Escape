@@ -198,9 +198,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set wall height and position based on the highest vertical point the player has reached
         leftWall.xScale = leftWallScale * ((player.getMaxHeight() + 1240) / 1000)
-        leftWall.position = CGPoint(x: leftWall.position.x, y: leftWall.size.width / 2 - 325)
+        leftWall.position = CGPoint(x: leftWall.position.x, y: leftWall.size.width / 2 - 480)
         rightWall.xScale = rightWallScale * ((player.getMaxHeight() + 1240) / 1000)
-        rightWall.position = CGPoint(x: rightWall.position.x, y: rightWall.size.width / 2 - 325)
+        rightWall.position = CGPoint(x: rightWall.position.x, y: rightWall.size.width / 2 - 480)
         
         SpawnBlock()
     }
