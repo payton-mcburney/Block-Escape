@@ -29,13 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func didMove(to view: SKView) {
-        // Gameplay background
-        backgroundColor = SKColor.white
         
-
         // Initialize player
         player = Player()
         self.addChild(player)
+        player.zPosition = 1
         physicsWorld.contactDelegate = self
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
         
@@ -46,19 +44,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let healthDisplay = childNode(withName: "health") as? SKLabelNode else {
             fatalError("Health display node not loaded!")
         }
-        healthDisplay.fontColor = UIColor.black
+        healthDisplay.fontColor = UIColor.yellow
         self.healthDisplay = healthDisplay
         
         guard let scoreDisplay = childNode(withName: "score") as? SKLabelNode else {
             fatalError("Score display node not loaded!")
         }
-        scoreDisplay.fontColor = UIColor.black
+        scoreDisplay.fontColor = UIColor.yellow
         self.scoreDisplay = scoreDisplay
         
         guard let gameOverDisplay = childNode(withName: "game_over") as? SKLabelNode else {
             fatalError("Game over display node not loaded!")
         }
-        gameOverDisplay.fontColor = UIColor.black
+        gameOverDisplay.fontColor = UIColor.yellow
         self.gameOverDisplay = gameOverDisplay
         
         // Initialize walls
@@ -215,6 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) { // Delay after 5 seconds
                 let block: Block = Block(playerY: self.player.position.y)
                 self.addChild(block)
+                block.zPosition = 1
                 self.blockSpawning = false
             }
         }
