@@ -16,13 +16,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var controls: GameControls!
     var leftWall: SKSpriteNode!
     var rightWall: SKSpriteNode!
+    var scrollBackground: SKSpriteNode!
     var leftWallScale: CGFloat!
     var rightWallScale: CGFloat!
     private var blockSpawning: Bool! = false
     
     var healthDisplay: SKLabelNode!
     var scoreDisplay: SKLabelNode!
-    var gameOverDisplay: SKLabelNode!
+    var gameOverDisplay: SKSpriteNode!
     
     var positions: [CGPoint]! = [CGPoint]()
     var myHero: SKSpriteNode!
@@ -52,13 +53,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreDisplay.fontColor = UIColor.yellow
         self.scoreDisplay = scoreDisplay
         
-        guard let gameOverDisplay = childNode(withName: "game_over") as? SKLabelNode else {
+        guard let gameOverDisplay = childNode(withName: "game_over") as? SKSpriteNode else {
             fatalError("Game over display node not loaded!")
         }
-        gameOverDisplay.fontColor = UIColor.yellow
         self.gameOverDisplay = gameOverDisplay
         
-        // Initialize walls
+        // Initialize walls and scroll background
         guard let leftWall = childNode(withName: "left_wall") as? SKSpriteNode else {
             fatalError("Left wall node not loaded!")
         }
@@ -70,6 +70,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         rightWallScale = rightWall.xScale
         self.rightWall = rightWall
+        
+        guard let scrollBackground = childNode(withName: "scroll_background") as? SKSpriteNode else {
+            fatalError("Scroll background node not loaded!")
+        }
+        self.scrollBackground = scrollBackground
         
         // Initialize camera
         // SOURCE: https://developer.apple.com/documentation/spritekit/skscene/1519696-camera
@@ -190,8 +195,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         healthDisplay.text = "Health: \(player.getHealth())"
         scoreDisplay.text = "Score: \(player.getScore())"
         
-        // Set camera, button, and label positions based on player position
+        // Set camera, background, button, and label positions based on player position
         cameraNode.position = CGPoint(x: cameraNode.position.x, y: player.position.y + 240)
+        scrollBackground.position = cameraNode.position
         controls.updateButtonPositions()
         healthDisplay.position = CGPoint(x: healthDisplay.position.x, y: cameraNode.position.y + 510)
         scoreDisplay.position = CGPoint(x: scoreDisplay.position.x, y: cameraNode.position.y + 560)
