@@ -30,6 +30,7 @@ class TitleScene: SKScene {
         
         if let spinnyNode = self.spinnyNode {
             spinnyNode.lineWidth = 2.5
+            spinnyNode.zPosition = 1
             
             spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
             spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),

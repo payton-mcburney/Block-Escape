@@ -33,7 +33,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Initialize player
         player = Player()
         self.addChild(player)
-        player.zPosition = 1
         physicsWorld.contactDelegate = self
         player.physicsBody!.contactTestBitMask = player.physicsBody!.collisionBitMask
         
@@ -213,7 +212,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) { // Delay after 5 seconds
                 let block: Block = Block(playerY: self.player.position.y)
                 self.addChild(block)
-                block.zPosition = 1
                 self.blockSpawning = false
             }
         }
