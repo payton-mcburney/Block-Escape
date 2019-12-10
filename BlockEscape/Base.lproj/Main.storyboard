@@ -84,24 +84,26 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Il9-NG-lsr">
                                 <rect key="frame" x="328" y="114" width="66" height="44"/>
-                                <color key="backgroundColor" red="0.24692971328048774" green="0.47450980390000003" blue="0.077570829856268522" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="F2a-l0-CFd"/>
                                 </constraints>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="Scores"/>
+                                <state key="normal" backgroundImage="scores_button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="Peq-wx-c2X" kind="show" id="TAr-d5-O0X"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQA-5z-W7l">
                                 <rect key="frame" x="328" y="23" width="66" height="42"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="c3a-fr-eCl"/>
                                 </constraints>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <state key="normal" title="Menu"/>
+                                <state key="normal" backgroundImage="menu_button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="3jr-YB-IuF" kind="unwind" unwindAction="unwindFromGameWithSender:" id="1zf-YT-o7I"/>
                                 </connections>
@@ -165,10 +167,12 @@
     </scenes>
     <resources>
         <image name="clear_scores_button.png" width="106.5" height="57.75"/>
+        <image name="menu_button" width="99" height="58"/>
+        <image name="scores_button" width="142" height="58"/>
         <image name="scores_button.png" width="106.5" height="43.5"/>
         <image name="start_button.png" width="91.5" height="43.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LgS-P9-zrm"/>
+        <segue reference="TAr-d5-O0X"/>
     </inferredMetricsTieBreakers>
 </document>
